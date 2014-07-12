@@ -2,7 +2,7 @@ package com.tenjava.entries.stuntguy3000.t1.handler;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
-import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
+import com.tenjava.entries.stuntguy3000.t1.object.AbilityHolder;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.inventory.ItemStack;
@@ -13,20 +13,20 @@ import java.util.HashMap;
 public class AbilityHandler {
     private FireFlight plugin;
 
-    private HashMap<String, AbilityType> bowNames = new HashMap<>();
+    private HashMap<String, Ability> bowNames = new HashMap<>();
 
     public AbilityHandler(FireFlight instance) {
         this.plugin = instance;
     }
 
     public void load() {
-        for (AbilityType type : AbilityType.values()) {
-            bowNames.put(ChatColor.GOLD + type.getAbility().getName(), type);
+        for (Ability type : Ability.values()) {
+            bowNames.put(ChatColor.GOLD + type.getAbilityHolder().getName(), type);
         }
     }
 
-    public AbilityType getAbilityType(final String abilityName) {
-        for (AbilityType type : AbilityType.values()) {
+    public Ability getAbilityType(final String abilityName) {
+        for (Ability type : Ability.values()) {
             if (abilityName.toUpperCase().equals(type.name())) {
                 return type;
             }
@@ -50,9 +50,10 @@ public class AbilityHandler {
         String name = ChatColor.stripColor(itemMeta.getDisplayName());
 
         if (bowNames.containsKey(name.toLowerCase())) {
-            Ability ability = bowNames.get(name).getAbility();
-            if (ability != null) {
-                runAbility(ability, arrow);
+            AbilityHolder abilityHolder = bowNames.get(name).getAbilityHolder();
+            if (abilityHolder != null) {
+                plugin.getArrowHandler().track(arrow);
+                runAbility(abilityHolder, arrow);
             }
         }
     }
@@ -60,11 +61,11 @@ public class AbilityHandler {
     /**
      * Run the specified ability
      *
-     * @param ability
+     * @param abilityHolder
      * @param arrow
      */
-    private void runAbility(Ability ability, Arrow arrow) {
-        if (ability.getAbility() == AbilityType.BURNER) {
+    private void runAbility(AbilityHolder abilityHolder, Arrow arrow) {
+        if (abilityHolder.getAbility() == Ability.BURNER) {
 
         }
     }

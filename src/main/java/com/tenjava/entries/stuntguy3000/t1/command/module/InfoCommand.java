@@ -3,7 +3,7 @@ package com.tenjava.entries.stuntguy3000.t1.command.module;
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
-import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
+import com.tenjava.entries.stuntguy3000.t1.object.AbilityHolder;
 import com.tenjava.entries.stuntguy3000.t1.util.Message;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -22,13 +22,13 @@ public class InfoCommand implements SubCommandModule {
             if (args.length == 1) {
                 String abilityName = args[0];
 
-                AbilityType abilityType = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
-                if (abilityType == null) {
+                Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                if (ability == null) {
                     commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_INVALID));
                 } else {
-                    Ability ability = abilityType.getAbility();
-                    commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_NAME, ability.getName()));
-                    commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_DESCRIPTION, ability.getDescription()));
+                    AbilityHolder abilityHolder = ability.getAbilityHolder();
+                    commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_NAME, abilityHolder.getName()));
+                    commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_DESCRIPTION, abilityHolder.getDescription()));
                 }
             } else {
                 ItemStack item = p.getItemInHand();
@@ -37,14 +37,14 @@ public class InfoCommand implements SubCommandModule {
                     p.sendMessage(Message.formulate(Message.ERROR_INVALID_SYNTAX, s, getName(), getUsage()));
                 } else {
                     String name = item.getItemMeta().getDisplayName();
-                    AbilityType abilityType = FireFlight.getInstance().getAbilityHandler().getAbilityType(name);
+                    Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(name);
 
-                    if (abilityType == null) {
+                    if (ability == null) {
                         commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_INVALID));
                     } else {
-                        Ability ability = abilityType.getAbility();
-                        commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_NAME, ability.getName()));
-                        commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_DESCRIPTION, ability.getDescription()));
+                        AbilityHolder abilityHolder = ability.getAbilityHolder();
+                        commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_NAME, abilityHolder.getName()));
+                        commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_DESCRIPTION, abilityHolder.getDescription()));
                     }
                 }
             }
@@ -52,13 +52,13 @@ public class InfoCommand implements SubCommandModule {
             if (args.length == 1) {
                 String abilityName = args[0];
 
-                AbilityType abilityType = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
-                if (abilityType == null) {
+                Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                if (ability == null) {
                     commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_INVALID));
                 } else {
-                    Ability ability = abilityType.getAbility();
-                    commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_NAME, ability.getName()));
-                    commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_DESCRIPTION, ability.getDescription()));
+                    AbilityHolder abilityHolder = ability.getAbilityHolder();
+                    commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_NAME, abilityHolder.getName()));
+                    commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_DESCRIPTION, abilityHolder.getDescription()));
                 }
             } else {
                 commandSender.sendMessage(Message.formulateConsole(Message.ERROR_INVALID_SYNTAX, s, getName(), getUsage()));

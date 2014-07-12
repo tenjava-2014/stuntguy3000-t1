@@ -2,7 +2,7 @@ package com.tenjava.entries.stuntguy3000.t1.command.module;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
-import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
+import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.util.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,11 +20,11 @@ public class GiveBowCommand implements SubCommandModule {
             if (args.length == 1) {
                 String abilityName = args[0];
 
-                AbilityType abilityType = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
-                if (abilityType == null) {
+                Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                if (ability == null) {
                     commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_INVALID));
                 } else {
-                    ItemStack item = abilityType.buildBow();
+                    ItemStack item = ability.buildBow();
                     p.getInventory().addItem(item);
                 }
             } else {

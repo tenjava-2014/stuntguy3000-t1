@@ -1,7 +1,7 @@
 package com.tenjava.entries.stuntguy3000.t1.handler;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
-import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
+import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
@@ -12,7 +12,7 @@ import java.util.UUID;
 public class ArrowHandler {
     private FireFlight plugin;
 
-    private HashMap<UUID, AbilityType> trackedArrows = new HashMap<>();
+    private HashMap<UUID, Ability> trackedArrows = new HashMap<>();
     private HashMap<UUID, String> trackedArrowWorlds = new HashMap<>();
 
     public ArrowHandler(FireFlight instance) {
@@ -25,11 +25,11 @@ public class ArrowHandler {
      * @param arrow the shot arrow
      * @return the AbilityType of the arrow
      */
-    public AbilityType getAbilityType(Arrow arrow) {
+    public Ability getAbilityType(Arrow arrow) {
         return trackedArrows.get(arrow.getUniqueId());
     }
 
-    public void addAbility(Arrow arrow, AbilityType ability) {
+    public void addAbility(Arrow arrow, Ability ability) {
         trackedArrows.put(arrow.getUniqueId(), ability);
         trackedArrowWorlds.put(arrow.getUniqueId(), arrow.getLocation().getWorld().getName());
     }
@@ -42,16 +42,20 @@ public class ArrowHandler {
         }
     }
 
+    public void track(final Arrow arrow, Ability ability) {
+
+    }
+
     public void untrackUUID(UUID u) {
         trackedArrows.remove(u);
         trackedArrowWorlds.remove(u);
     }
 
-    public HashMap<UUID, AbilityType> getAllTrackedArrows() {
+    public HashMap<UUID, Ability> getAllTrackedArrows() {
         return trackedArrows;
     }
 
-    public void setAllTrackedArrows(HashMap<UUID, AbilityType> tracked) {
+    public void setAllTrackedArrows(HashMap<UUID, Ability> tracked) {
         trackedArrows = tracked;
     }
 }

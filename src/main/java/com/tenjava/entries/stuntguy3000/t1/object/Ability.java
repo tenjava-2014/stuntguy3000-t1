@@ -1,38 +1,59 @@
 package com.tenjava.entries.stuntguy3000.t1.object;
 
-public class Ability {
-    private AbilityType ability;
-    private String name;
-    private String description;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-    public Ability(final AbilityType ability, final String name, final String description) {
-        this.ability = ability;
-        this.name = name;
-        this.description = description;
+public enum Ability {
+    /**
+     * Leaves a trail of fire behind and underneath a shot arrow
+     */
+    TRAIL(new AbilityHolder(null, "Trail", "Leaves a trail of fire behind an arrow")),
+
+    /**
+     * Destroys through blocks
+     */
+    BURNER(new AbilityHolder(null, "Burner", "Allows arrows to burn through blocks")),
+
+    /**
+     * When shot into an entity, the entity is thrown in the direction of the arrow
+     */
+    HOOK(new AbilityHolder(null, "Hook", "Hooks entities onto an Arrow, making them follow the Arrow's path")),
+
+    /**
+     * When used, a configurable amount of arrows are launched in multiple directions
+     */
+    SCATTER(new AbilityHolder(null, "Scatter", "Launches multiple arrows in a scatter pattern")),
+
+    /**
+     * Transfers active potion effects from one player to another on arrow contact
+     */
+    EFFECTOR(new AbilityHolder(null, "Effector", "Passes on effects from the shooter to the receiver")),
+
+    /**
+     * When hit, an explosion occurs.
+     */
+    MISSILE(new AbilityHolder(null, "Missile", "Makes arrows explosive"));
+
+    AbilityHolder abilityHolder;
+
+    Ability(AbilityHolder type) {
+        this.abilityHolder = type;
+        abilityHolder.setAbility(this);
     }
 
-    public AbilityType getAbility() {
-        return ability;
+    public ItemStack buildBow() {
+        ItemStack is = new ItemStack(Material.BOW);
+        ItemMeta im = is.getItemMeta();
+
+        im.setDisplayName(ChatColor.GOLD + this.getAbilityHolder().getName());
+        is.setItemMeta(im);
+
+        return is;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setAbility(final AbilityType ability) {
-        this.ability = ability;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
+    public AbilityHolder getAbilityHolder() {
+        return abilityHolder;
     }
 }
-    
