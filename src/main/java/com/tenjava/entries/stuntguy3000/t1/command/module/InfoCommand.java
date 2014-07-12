@@ -20,7 +20,7 @@ public class InfoCommand implements SubCommandModule {
 
     @Override
     public String getUsage() {
-        return "<ability>";
+        return "[ability]";
     }
 
     @Override

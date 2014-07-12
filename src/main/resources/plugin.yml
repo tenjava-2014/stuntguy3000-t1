@@ -2,3 +2,6 @@ name: stuntguy3000-t1
 main: com.tenjava.entries.stuntguy3000.t1.TenJava
 version: '${project.version}'
 author: stuntguy3000
+commands:
+    FireFlight:
+        description: Main command for FireFlight

@@ -1,6 +1,6 @@
 package com.tenjava.entries.stuntguy3000.t1.object;
 
-public enum BowAbility {
+public enum AbilityType {
     /**
      * Leaves a trail of fire behind and underneath a shot arrow
      */
