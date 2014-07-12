@@ -38,7 +38,14 @@ public enum Ability {
     /**
      * When hit, an explosion occurs.
      */
-    MISSILE(new AbilityHolder(null, "Missile", "Makes arrows explosive"));
+    MISSILE(new AbilityHolder(null, "Missile", "Makes arrows explosive")),
+
+    /**
+     * As the Arrow soars across the land, it produces random Jukebox notes
+     * Which has got to be confusing
+     */
+    CONFUSER(new AbilityHolder(null, "Confuser", "Confuse your enemy with the sound of your battlecry"));
+
 
     AbilityHolder abilityHolder;
 
