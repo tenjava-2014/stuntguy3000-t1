@@ -7,10 +7,8 @@ import java.util.HashMap;
 
 public class Config {
     public static HashMap<Material, Integer> BURNER_BLOCK_RESTIANCE = new HashMap<>();
-    public static boolean BURNER_RELOAD = true;
-    public static boolean BURNER_REMOVE_FIRE = true;
-    public static int BURNER_REMOVE_FIRE_AFTER = 25;
-    public static int BURNER_TIME = 15;
+    public static boolean BOMBER_RELOAD = true;
+    public static boolean BOMBER_REMOVE_FIRE = true;
 
     public static boolean HOOK_RELOAD = true;
     public static int HOOK_TIME = 15;

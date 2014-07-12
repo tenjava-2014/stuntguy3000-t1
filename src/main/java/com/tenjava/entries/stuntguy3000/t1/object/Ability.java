@@ -13,10 +13,12 @@ public enum Ability {
      */
     TRAIL(new AbilityHolder(null, "Trail", "Leaves a trail of fire behind an arrow")),
 
-    /**
-     * Destroys through blocks
-     */
-    BURNER(new AbilityHolder(null, "Burner", "Allows arrows to burn through blocks")),
+    ///**
+    // * Destroys through blocks
+    // */
+    //BURNER(new AbilityHolder(null, "Burner", "Allows arrows to burn through blocks")),
+
+    BOMBER(new AbilityHolder(null, "Bomber", "Drop bombs from the sky as your arrow guides the way")),
 
     /**
      * When shot into an entity, the entity is thrown in the direction of the arrow
