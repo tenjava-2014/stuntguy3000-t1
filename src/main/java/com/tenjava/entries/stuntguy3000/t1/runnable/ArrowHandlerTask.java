@@ -2,6 +2,7 @@ package com.tenjava.entries.stuntguy3000.t1.runnable;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
+import com.tenjava.entries.stuntguy3000.t1.util.Config;
 import com.tenjava.entries.stuntguy3000.t1.util.Util;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
@@ -54,6 +55,11 @@ public class ArrowHandlerTask extends BukkitRunnable {
                 two.getBlock().setType(Material.FIRE);
                 three.getBlock().setType(Material.FIRE);
                 four.getBlock().setType(Material.FIRE);
+
+                plugin.getFireCleanupHandler().trackFire(one, Config.TRAIL_REMOVE_FIRE_AFTER);
+                plugin.getFireCleanupHandler().trackFire(two, Config.TRAIL_REMOVE_FIRE_AFTER);
+                plugin.getFireCleanupHandler().trackFire(three, Config.TRAIL_REMOVE_FIRE_AFTER);
+                plugin.getFireCleanupHandler().trackFire(four, Config.TRAIL_REMOVE_FIRE_AFTER);
 
                 world.playEffect(arrow.getLocation(), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(3, 0, 3), Effect.MOBSPAWNER_FLAMES, 10);

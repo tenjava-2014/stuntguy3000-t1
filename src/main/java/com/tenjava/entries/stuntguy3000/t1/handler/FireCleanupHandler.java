@@ -9,30 +9,62 @@ import java.util.HashMap;
 public class FireCleanupHandler {
     private FireFlight plugin;
 
-    private HashMap<Location, Integer> fire = new HashMap<>();
+    private HashMap<Location, Integer> trackedFire = new HashMap<>();
 
     public FireCleanupHandler(FireFlight instance) {
         this.plugin = instance;
     }
 
+    /**
+     * Track fire at the specified location
+     * @param l
+     * @param timeout
+     */
     public void trackFire(Location l, int timeout) {
-        fire.put(l.clone(), timeout);
+        trackedFire.put(cleanLocation(l), timeout);
     }
 
+    /**
+     * Remove any unwanted fire at loc
+     * @param loc
+     */
     public void cleanup(final Location loc) {
         if (loc != null && loc.getWorld() != null && loc.getBlock() != null && loc.getBlock().getType() == Material.FIRE) {
             loc.getBlock().setType(Material.AIR);
         }
 
-        fire.remove(loc);
+        trackedFire.remove(loc);
     }
 
     public HashMap<Location, Integer> getAllTimes() {
-        return fire;
+        return trackedFire;
     }
 
+    /**
+     * Determine if a Location is Tracked
+     * @param location
+     * @return
+     */
     public boolean isTracked(final Location location) {
-        return fire.containsKey(location.clone());
+        return trackedFire.containsKey(cleanLocation(location.clone()));
+    }
+
+    public Location cleanLocation(Location original) {
+        Location loc = original.clone();
+        loc.setX((int) original.getX());
+        loc.setY((int) original.getY());
+        loc.setZ((int) original.getZ());
+        loc.setYaw(0f);
+        loc.setPitch(0f);
+        return loc.clone();
+    }
+
+    /**
+     *
+     * @param trackedFireUpdated
+     */
+    public void updateTracked(final HashMap<Location, Integer> trackedFireUpdated) {
+        trackedFire = (HashMap<Location, Integer>) trackedFireUpdated.clone();
     }
 }
     

@@ -9,6 +9,7 @@ import com.tenjava.entries.stuntguy3000.t1.listener.ReloadListener;
 import com.tenjava.entries.stuntguy3000.t1.runnable.ArrowHandlerTask;
 import com.tenjava.entries.stuntguy3000.t1.runnable.FireCleanupHandlerTask;
 import com.tenjava.entries.stuntguy3000.t1.runnable.ReloadHandlerTask;
+import com.tenjava.entries.stuntguy3000.t1.util.Config;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FireFlight extends JavaPlugin {
@@ -20,6 +21,7 @@ public class FireFlight extends JavaPlugin {
     private ExplosionTracer explosionTracker;
     private FireCleanupHandler fireCleanupHandler;
     private ReloadHandler reloadHandler;
+    private ConfigHandler configHandler;
 
     public void onEnable() {
         instance = this;
@@ -33,7 +35,10 @@ public class FireFlight extends JavaPlugin {
 
         new ArrowHandlerTask(this).runTaskTimer(this, 1l, 1l);
         new ReloadHandlerTask(this).runTaskTimer(this, 20l, 20l);
-        new FireCleanupHandlerTask(this).runTaskTimer(this, 20l, 20l);
+
+        if (Config.TRAIL_REMOVE_FIRE) {
+            new FireCleanupHandlerTask(this).runTaskTimer(this, 20l, 20l);
+        }
     }
 
     /**
@@ -109,7 +114,9 @@ public class FireFlight extends JavaPlugin {
         explosionTracker = new ExplosionTracer(this);
         reloadHandler = new ReloadHandler(this);
         fireCleanupHandler = new FireCleanupHandler(this);
+        configHandler = new ConfigHandler(this);
 
+        configHandler.load();
         commandHandler.registerModules();
         abilityHandler.load();
         reloadHandler.load();

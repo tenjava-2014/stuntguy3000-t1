@@ -26,7 +26,7 @@ Maven will download all required dependencies and build a ready-for-use plugin p
 Description
 ----
 
-FireFlight is a plugin which is designed to enhance and unleash the true power of bows, which such fea tures as
+FireFlight is a plugin which is designed to enhance and unleash the true power of bows, which such features as
  * Trail
     - Leave a Trail of **Fire** behind your arrow
  * Bomber
@@ -42,8 +42,7 @@ FireFlight is a plugin which is designed to enhance and unleash the true power o
  * Confuser
     - Confuse your Enemy with your Battlecry
  
- 
-This plugin is designed for use in a PVP server, as it uses display names and lores to recognize the bows ability.
+This plugin is designed for use in a PVP server, as it uses display names and lores to recognize the bows ability. These bows can go alongside one another and/or even kits to enhance gameplay for a truly unique fun and exciting experience.
 
 Configuration Explanation:
 ----
