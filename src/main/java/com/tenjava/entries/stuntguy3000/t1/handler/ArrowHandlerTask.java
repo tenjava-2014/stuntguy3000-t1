@@ -2,6 +2,9 @@ package com.tenjava.entries.stuntguy3000.t1.handler;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
+import com.tenjava.entries.stuntguy3000.t1.util.Util;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -37,9 +40,14 @@ public class ArrowHandlerTask implements Runnable {
                 }
             }
 
-            if (arrow == null) {
+            if (arrow == null || abilityType == null) {
                 plugin.getArrowHandler().untrackUUID(uuid);
                 continue;
+            }
+
+            if (abilityType == AbilityType.TRAIL) {
+                Location block = Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0);
+                block.getBlock().setType(Material.FIRE);
             }
         }
     }

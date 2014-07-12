@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class FireFlight extends JavaPlugin {
 
-    private FireFlight instance;
+    private static FireFlight instance;
 
     private ArrowHandler arrowHandler;
     private CommandHandler commandHandler;
@@ -17,6 +17,8 @@ public class FireFlight extends JavaPlugin {
 
     public void onEnable() {
         instance = this;
+
+        saveDefaultConfig();
 
         registerHandlers();
         registerListeners();
@@ -60,7 +62,7 @@ public class FireFlight extends JavaPlugin {
      *
      * @return instance
      */
-    public FireFlight getInstance() {
+    public static FireFlight getInstance() {
         return instance;
     }
 

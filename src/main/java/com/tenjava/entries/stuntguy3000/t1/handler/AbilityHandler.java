@@ -20,6 +20,14 @@ public class AbilityHandler {
         this.plugin = instance;
     }
 
+    public void load() {
+
+    }
+
+    public AbilityType getAbilityType(final String abilityName) {
+        return bowNames.get(abilityName.toLowerCase());
+    }
+
     /**
      * Parse an Event, deciding if any FireFlight action should occur
      *

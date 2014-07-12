@@ -4,7 +4,8 @@ import org.bukkit.ChatColor;
 
 public class Message {
     public static final String COMMAND_HELP = "&7/%s &e%s %s &8- &7%s";
-    public static final String COMMAND_HELP_TLTE = "§6FireFlight Command List:";
+    public static final String COMMAND_HELP_TLTE = "&6FireFlight Command List:";
+    public static final String COMMAND_INFO_INVALID = "&cInvalid ability specified!";
     public static final String ERROR_COMMAND_UNSUPPORTED_CONSOLE = "&cOnly Players can run this command!";
     public static final String ERROR_INVALID_COMMAND = "&cThat command cannot be found!";
     public static final String ERROR_INVALID_SYNTAX = "&cCorrect Syntax: /%s %s %s";
