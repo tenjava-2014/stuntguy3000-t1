@@ -6,6 +6,7 @@ import com.tenjava.entries.stuntguy3000.t1.listener.BowListener;
 import com.tenjava.entries.stuntguy3000.t1.listener.InventoryListener;
 import com.tenjava.entries.stuntguy3000.t1.listener.ReloadListener;
 import com.tenjava.entries.stuntguy3000.t1.runnable.ArrowHandlerTask;
+import com.tenjava.entries.stuntguy3000.t1.runnable.ReloadHandlerTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FireFlight extends JavaPlugin {
@@ -28,6 +29,7 @@ public class FireFlight extends JavaPlugin {
         this.getCommand("FireFlight").setExecutor(new FireFlightCommand(this));
 
         new ArrowHandlerTask(this).runTaskTimer(this, 1l, 1l);
+        new ReloadHandlerTask(this).runTaskTimer(this, 20l, 20l);
     }
 
     /**

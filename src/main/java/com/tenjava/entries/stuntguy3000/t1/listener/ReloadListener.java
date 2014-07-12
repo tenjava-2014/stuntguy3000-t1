@@ -31,7 +31,7 @@ public class ReloadListener implements Listener {
                     // It's a match!
                     Player p = event.getPlayer();
                     if (!plugin.getReloadHandler().canUse(p.getUniqueId(), ability)) {
-                        p.sendMessage(Message.formulate(Message.ERROR_COOLDOWN, plugin.getReloadHandler().getTimeLeft(p.getUniqueId(), ability)));
+                        p.sendMessage(Message.formulate(Message.ERROR_COOLDOWN, String.valueOf(plugin.getReloadHandler().getTimeLeft(p.getUniqueId(), ability))));
                         event.setCancelled(true);
                     }
                 }
