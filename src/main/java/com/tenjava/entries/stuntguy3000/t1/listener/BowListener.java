@@ -2,7 +2,7 @@ package com.tenjava.entries.stuntguy3000.t1.listener;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.EventType;
-import org.bukkit.Bukkit;
+import com.tenjava.entries.stuntguy3000.t1.util.Config;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,21 +20,20 @@ public class BowListener implements Listener {
     }
 
     @EventHandler
-    public void onFire(EntityShootBowEvent event) {
-        if (event.getEntity() instanceof Player && event.getProjectile() instanceof Arrow) {
-            Player p = (Player) event.getEntity();
-            Arrow arrow = (Arrow) event.getProjectile();
-
-            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_SHOOT_BOW, event.getBow(), event.getForce());
+    public void onExplode(EntityExplodeEvent event) {
+        if (plugin.getExplosionTracker().removeIfTracked(event.getLocation())) {
+            if (!Config.MISSILE_BLOCK_DROPS) {
+                event.setYield(0);
+            }
         }
     }
 
     @EventHandler
-    public void onHit(ProjectileHitEvent event) {
-        if (event.getEntity() instanceof Arrow) {
-            Arrow arrow = (Arrow) event.getEntity();
+    public void onFire(EntityShootBowEvent event) {
+        if (event.getEntity() instanceof Player && event.getProjectile() instanceof Arrow) {
+            Arrow arrow = (Arrow) event.getProjectile();
 
-            plugin.getAbilityHandler().parseEvent(arrow, EventType.PROJECTILE_HIT);
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_SHOOT_BOW, event.getBow(), event.getForce());
         }
     }
 
@@ -48,8 +47,12 @@ public class BowListener implements Listener {
     }
 
     @EventHandler
-    public void onExplode(EntityExplodeEvent event) {
-        Bukkit.broadcastMessage(event.getEntityType().name());
+    public void onHit(ProjectileHitEvent event) {
+        if (event.getEntity() instanceof Arrow) {
+            Arrow arrow = (Arrow) event.getEntity();
+
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.PROJECTILE_HIT);
+        }
     }
 }
     

@@ -11,9 +11,8 @@ import java.util.UUID;
 
 public class ArrowHandler {
     private FireFlight plugin;
-
-    private HashMap<UUID, Ability> trackedArrows = new HashMap<>();
     private HashMap<UUID, String> trackedArrowWorlds = new HashMap<>();
+    private HashMap<UUID, Ability> trackedArrows = new HashMap<>();
 
     public ArrowHandler(FireFlight instance) {
         this.plugin = instance;
@@ -30,7 +29,17 @@ public class ArrowHandler {
     }
 
     /**
+     * Returns a HashMap of all tracked arrows
+     *
+     * @return
+     */
+    public HashMap<UUID, Ability> getAllTrackedArrows() {
+        return trackedArrows;
+    }
+
+    /**
      * Gets the stored world where an UUID (of an Entity) is
+     *
      * @param uuid
      * @return
      */
@@ -55,19 +64,12 @@ public class ArrowHandler {
 
     /**
      * Removes tracking of an arrow
+     *
      * @param uuid
      */
     public void untrackUUID(UUID uuid) {
         trackedArrows.remove(uuid);
         trackedArrowWorlds.remove(uuid);
-    }
-
-    /**
-     * Returns a HashMap of all tracked arrows
-     * @return
-     */
-    public HashMap<UUID, Ability> getAllTrackedArrows() {
-        return trackedArrows;
     }
 }
     

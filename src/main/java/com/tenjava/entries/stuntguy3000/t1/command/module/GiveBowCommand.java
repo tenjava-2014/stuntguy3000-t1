@@ -37,16 +37,6 @@ public class GiveBowCommand implements SubCommandModule {
     }
 
     @Override
-    public String getName() {
-        return "givebow";
-    }
-
-    @Override
-    public String getUsage() {
-        return "<name>";
-    }
-
-    @Override
     public List<String> getAliases() {
         return Arrays.asList("g", "gb", "give", "giveb");
     }
@@ -54,5 +44,15 @@ public class GiveBowCommand implements SubCommandModule {
     @Override
     public String getDescription() {
         return "Give yourself a Bow with a Ability attached to it";
+    }
+
+    @Override
+    public String getName() {
+        return "givebow";
+    }
+
+    @Override
+    public String getUsage() {
+        return "<name>";
     }
 }

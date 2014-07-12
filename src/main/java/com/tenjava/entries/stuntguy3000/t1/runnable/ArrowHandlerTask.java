@@ -1,4 +1,4 @@
-package com.tenjava.entries.stuntguy3000.t1.handler;
+package com.tenjava.entries.stuntguy3000.t1.runnable;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;

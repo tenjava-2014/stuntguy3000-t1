@@ -1,21 +1,21 @@
 package com.tenjava.entries.stuntguy3000.t1;
 
 import com.tenjava.entries.stuntguy3000.t1.command.FireFlightCommand;
-import com.tenjava.entries.stuntguy3000.t1.handler.AbilityHandler;
-import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandler;
-import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandlerTask;
-import com.tenjava.entries.stuntguy3000.t1.handler.CommandHandler;
+import com.tenjava.entries.stuntguy3000.t1.handler.*;
 import com.tenjava.entries.stuntguy3000.t1.listener.BowListener;
 import com.tenjava.entries.stuntguy3000.t1.listener.InventoryListener;
+import com.tenjava.entries.stuntguy3000.t1.listener.ReloadListener;
+import com.tenjava.entries.stuntguy3000.t1.runnable.ArrowHandlerTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FireFlight extends JavaPlugin {
 
     private static FireFlight instance;
-
+    private AbilityHandler abilityHandler;
     private ArrowHandler arrowHandler;
     private CommandHandler commandHandler;
-    private AbilityHandler abilityHandler;
+    private ExplosionTracer explosionTracker;
+    private ReloadHandler reloadHandler;
 
     public void onEnable() {
         instance = this;
@@ -31,27 +31,12 @@ public class FireFlight extends JavaPlugin {
     }
 
     /**
-     * Register all listeners
+     * Get the instance of {@link AbilityHandler}
+     *
+     * @return
      */
-    private void registerListeners() {
-        this.getServer().getPluginManager().registerEvents(new BowListener(this), this);
-        this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
-    }
-
     public AbilityHandler getAbilityHandler() {
         return abilityHandler;
-    }
-
-    /**
-     * Initialize all Handlers
-     */
-    private void registerHandlers() {
-        arrowHandler = new ArrowHandler(this);
-        commandHandler = new CommandHandler(this);
-        abilityHandler = new AbilityHandler(this);
-
-        commandHandler.registerModules();
-        abilityHandler.load();
     }
 
     /**
@@ -64,6 +49,24 @@ public class FireFlight extends JavaPlugin {
     }
 
     /**
+     * Get the instance of {@link CommandHandler}
+     *
+     * @return commandHandler
+     */
+    public CommandHandler getCommandHandler() {
+        return commandHandler;
+    }
+
+    /**
+     * Get the instance of {@link ExplosionTracer}
+     *
+     * @return
+     */
+    public ExplosionTracer getExplosionTracker() {
+        return explosionTracker;
+    }
+
+    /**
      * Get the instance of {@link FireFlight}
      *
      * @return instance
@@ -73,11 +76,35 @@ public class FireFlight extends JavaPlugin {
     }
 
     /**
-     * Get the instance of {@link CommandHandler}
+     * Get the instance of {@link ReloadHandler}
      *
-     * @return commandHandler
+     * @return
      */
-    public CommandHandler getCommandHandler() {
-        return commandHandler;
+    public ReloadHandler getReloadHandler() {
+        return reloadHandler;
+    }
+
+    /**
+     * Initialize all Handlers
+     */
+    private void registerHandlers() {
+        arrowHandler = new ArrowHandler(this);
+        commandHandler = new CommandHandler(this);
+        abilityHandler = new AbilityHandler(this);
+        explosionTracker = new ExplosionTracer(this);
+        reloadHandler = new ReloadHandler(this);
+
+        commandHandler.registerModules();
+        abilityHandler.load();
+        reloadHandler.load();
+    }
+
+    /**
+     * Register all listeners
+     */
+    private void registerListeners() {
+        this.getServer().getPluginManager().registerEvents(new BowListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new ReloadListener(this), this);
     }
 }

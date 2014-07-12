@@ -31,16 +31,8 @@ public class CommandHandler {
     }
 
     /**
-     * Registers all CommandModules
-     */
-    public void registerModules() {
-        registerModule(new InfoCommand());
-        registerModule(new GiveBowCommand());
-        registerModule(new SelectBowCommand());
-    }
-
-    /**
      * Register a {@link com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule}
+     *
      * @param subCommandModule Module to be registered
      */
     private void registerModule(SubCommandModule subCommandModule) {
@@ -60,6 +52,15 @@ public class CommandHandler {
 
             subCommands.put(validNames, subCommandModule);
         }
+    }
+
+    /**
+     * Registers all CommandModules
+     */
+    public void registerModules() {
+        registerModule(new InfoCommand());
+        registerModule(new GiveBowCommand());
+        registerModule(new SelectBowCommand());
     }
 }
     

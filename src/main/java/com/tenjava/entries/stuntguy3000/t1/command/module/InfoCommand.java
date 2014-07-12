@@ -68,16 +68,6 @@ public class InfoCommand implements SubCommandModule {
     }
 
     @Override
-    public String getName() {
-        return "info";
-    }
-
-    @Override
-    public String getUsage() {
-        return "[ability (or hold bow in hand)]";
-    }
-
-    @Override
     public List<String> getAliases() {
         return Arrays.asList("i", "information");
     }
@@ -85,6 +75,16 @@ public class InfoCommand implements SubCommandModule {
     @Override
     public String getDescription() {
         return "View the information about an Ability";
+    }
+
+    @Override
+    public String getName() {
+        return "info";
+    }
+
+    @Override
+    public String getUsage() {
+        return "[ability (or hold bow in hand)]";
     }
 }
     

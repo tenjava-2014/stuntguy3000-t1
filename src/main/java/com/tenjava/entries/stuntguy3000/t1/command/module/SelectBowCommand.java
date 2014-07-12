@@ -34,8 +34,7 @@ public class SelectBowCommand implements SubCommandModule {
                 }
 
                 lore.add(ChatColor.AQUA + "---------------");
-                lore.add((p.hasPermission(Perm.formulate(Perm.GENERAL_BOW_USE, ability.name().toLowerCase())) ?
-                        ChatColor.GREEN + "You can select this Bow." : ChatColor.RED + "You cannot select this Bow."));
+                lore.add((p.hasPermission(Perm.formulate(Perm.GENERAL_BOW_USE, ability.name().toLowerCase())) ? ChatColor.GREEN + "You can select this Bow." : ChatColor.RED + "You cannot select this Bow."));
                 meta.setLore(lore);
                 display.setItemMeta(meta);
 
@@ -51,16 +50,6 @@ public class SelectBowCommand implements SubCommandModule {
     }
 
     @Override
-    public String getName() {
-        return "select";
-    }
-
-    @Override
-    public String getUsage() {
-        return null;
-    }
-
-    @Override
     public List<String> getAliases() {
         return Arrays.asList("sb", "s");
     }
@@ -68,5 +57,15 @@ public class SelectBowCommand implements SubCommandModule {
     @Override
     public String getDescription() {
         return "Select a Bow to give to yourself";
+    }
+
+    @Override
+    public String getName() {
+        return "select";
+    }
+
+    @Override
+    public String getUsage() {
+        return null;
     }
 }

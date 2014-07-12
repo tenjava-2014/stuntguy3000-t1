@@ -4,6 +4,7 @@ import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.object.AbilityHolder;
 import com.tenjava.entries.stuntguy3000.t1.object.EventType;
+import com.tenjava.entries.stuntguy3000.t1.util.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
@@ -27,12 +28,6 @@ public class AbilityHandler {
         this.plugin = instance;
     }
 
-    public void load() {
-        for (Ability type : Ability.values()) {
-            bowNames.put(type.getAbilityHolder().getName().toLowerCase(), type);
-        }
-    }
-
     public Ability getAbilityType(final String abilityName) {
         for (Ability type : Ability.values()) {
             if (abilityName.toUpperCase().equals(type.name())) {
@@ -42,9 +37,16 @@ public class AbilityHandler {
         return null;
     }
 
+    public void load() {
+        for (Ability type : Ability.values()) {
+            bowNames.put(type.getAbilityHolder().getName().toLowerCase(), type);
+        }
+    }
+
     /**
      * Parse an Event, deciding if any FireFlight action should occur
-     * @param arrow the shot Arrow
+     *
+     * @param arrow     the shot Arrow
      * @param eventType
      */
     public void parseEvent(Arrow arrow, final EventType eventType, Object... extras) {
@@ -74,7 +76,8 @@ public class AbilityHandler {
                 if (ability == Ability.MISSILE) {
                     Location loc = arrow.getLocation();
                     arrow.remove();
-                    loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 4f, false, true);
+                    plugin.getExplosionTracker().track(loc.clone());
+                    loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), Config.MISSILE_POWER, false, Config.MISSILE_DAMAGE_BLOCKS);
                 }
             }
         } else if (eventType == EventType.ENTITY_DAMAGE_ARROW) {
@@ -98,7 +101,7 @@ public class AbilityHandler {
                 if (extras != null && extras[0] instanceof Entity) {
                     Entity target = (Entity) extras[0];
 
-                    target.setVelocity(arrow.getVelocity().multiply(2));
+                    target.setVelocity(arrow.getVelocity().multiply(Config.HOOK_VELOCITY_MULTIPLIER));
                 }
             }
         }
@@ -109,16 +112,11 @@ public class AbilityHandler {
             Location location = arrow.getLocation();
             Vector arrowVector = arrow.getVelocity();
 
-            spawnSpreadArrow(arrowVector, arrow, location, (Float) extras[1], 12);
+            for (double i = 0.15; i <= 0.35;) {
+                location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(i)), (Float) extras[1], 13);
+                i = i + 0.15;
+            }
         }
-    }
-
-    private void spawnSpreadArrow(final Vector arrowVector, Arrow arrow, final Location location, final float speed, final int spread) {
-        location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(0.15D)), speed, spread);
-        location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(0.20D)), speed, spread);
-        location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(0.25D)), speed, spread);
-        location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(0.30D)), speed, spread);
-        location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(0.35D)), speed, spread);
     }
 }
     
