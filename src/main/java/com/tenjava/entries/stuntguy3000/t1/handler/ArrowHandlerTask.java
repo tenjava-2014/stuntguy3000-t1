@@ -8,12 +8,13 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ArrowHandlerTask implements Runnable {
+public class ArrowHandlerTask extends BukkitRunnable {
     private FireFlight plugin;
 
     public ArrowHandlerTask(FireFlight instance) {

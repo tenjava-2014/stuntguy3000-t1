@@ -7,6 +7,7 @@ import com.tenjava.entries.stuntguy3000.t1.util.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,13 @@ public class GiveBowCommand implements SubCommandModule {
             if (args.length == 1) {
                 String abilityName = args[0];
 
-                AbilityType ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                AbilityType abilityType = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                if (abilityType == null) {
+                    commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_INVALID));
+                } else {
+                    ItemStack item = abilityType.buildBow();
+                    p.getInventory().addItem(item);
+                }
             } else {
                 p.sendMessage(Message.formulate(Message.ERROR_INVALID_SYNTAX, s, getName(), getUsage()));
             }

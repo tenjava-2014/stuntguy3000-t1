@@ -1,13 +1,11 @@
 package com.tenjava.entries.stuntguy3000.t1.object;
 
-import java.util.List;
-
 public class Ability {
     private AbilityType ability;
     private String name;
-    private List<String> description;
+    private String description;
 
-    public Ability(final AbilityType ability, final String name, final List<String> description) {
+    public Ability(final AbilityType ability, final String name, final String description) {
         this.ability = ability;
         this.name = name;
         this.description = description;
@@ -17,7 +15,7 @@ public class Ability {
         return ability;
     }
 
-    public List<String> getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -29,7 +27,7 @@ public class Ability {
         this.ability = ability;
     }
 
-    public void setDescription(final List<String> description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 

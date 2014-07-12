@@ -3,6 +3,7 @@ package com.tenjava.entries.stuntguy3000.t1;
 import com.tenjava.entries.stuntguy3000.t1.command.FireFlightCommand;
 import com.tenjava.entries.stuntguy3000.t1.handler.AbilityHandler;
 import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandler;
+import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandlerTask;
 import com.tenjava.entries.stuntguy3000.t1.handler.CommandHandler;
 import com.tenjava.entries.stuntguy3000.t1.listener.BowListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,8 @@ public class FireFlight extends JavaPlugin {
         registerListeners();
 
         this.getCommand("FireFlight").setExecutor(new FireFlightCommand(this));
+
+        new ArrowHandlerTask(this).runTaskTimer(this, 10l, 10l);
     }
 
     /**
@@ -46,6 +49,7 @@ public class FireFlight extends JavaPlugin {
         abilityHandler = new AbilityHandler(this);
 
         commandHandler.registerModules();
+        abilityHandler.load();
     }
 
     /**

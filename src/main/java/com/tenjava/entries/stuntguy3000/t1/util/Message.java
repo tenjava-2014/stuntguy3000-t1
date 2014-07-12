@@ -6,11 +6,12 @@ public class Message {
     public static final String COMMAND_HELP = "&7/%s &e%s %s &8- &7%s";
     public static final String COMMAND_HELP_TLTE = "&6FireFlight Command List:";
     public static final String COMMAND_INFO_INVALID = "&cInvalid ability specified!";
+    public static final String COMMAND_INFO_NAME = "&7Name: &e%s";
+    public static final String COMMAND_INFO_DESCRIPTION = "&7Description: &e%s";
     public static final String ERROR_COMMAND_UNSUPPORTED_CONSOLE = "&cOnly Players can run this command!";
     public static final String ERROR_INVALID_COMMAND = "&cThat command cannot be found!";
     public static final String ERROR_INVALID_SYNTAX = "&cCorrect Syntax: /%s %s %s";
     public static final String GENERAL_PREFIX = "&8[&6FireFlight&8] ";
-    public static final String GENERAL_PREFIX_CONSOLE = "[FireFlight] ";
 
     /**
      * Formulate a String, and its variables into a Message to be sent to a Player
@@ -33,7 +34,7 @@ public class Message {
      * @return formulated result
      */
     public static String formulateConsole(String message, Object... variables) {
-        return ChatColor.stripColor(GENERAL_PREFIX_CONSOLE + formulate(message, variables));
+        return ChatColor.stripColor(formulate(message, variables));
     }
 }
     

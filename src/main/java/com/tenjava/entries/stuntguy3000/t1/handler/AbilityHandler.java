@@ -13,7 +13,6 @@ import java.util.HashMap;
 public class AbilityHandler {
     private FireFlight plugin;
 
-    private HashMap<AbilityType, Ability> abilitys = new HashMap<>();
     private HashMap<String, AbilityType> bowNames = new HashMap<>();
 
     public AbilityHandler(FireFlight instance) {
@@ -21,11 +20,18 @@ public class AbilityHandler {
     }
 
     public void load() {
-
+        for (AbilityType type : AbilityType.values()) {
+            bowNames.put(ChatColor.GOLD + type.getAbility().getName(), type);
+        }
     }
 
     public AbilityType getAbilityType(final String abilityName) {
-        return bowNames.get(abilityName.toLowerCase());
+        for (AbilityType type : AbilityType.values()) {
+            if (abilityName.toUpperCase().equals(type.name())) {
+                return type;
+            }
+        }
+        return null;
     }
 
     /**
@@ -44,7 +50,7 @@ public class AbilityHandler {
         String name = ChatColor.stripColor(itemMeta.getDisplayName());
 
         if (bowNames.containsKey(name.toLowerCase())) {
-            Ability ability = getAbility(bowNames.get(name));
+            Ability ability = bowNames.get(name).getAbility();
             if (ability != null) {
                 runAbility(ability, arrow);
             }
@@ -61,16 +67,6 @@ public class AbilityHandler {
         if (ability.getAbility() == AbilityType.BURNER) {
 
         }
-    }
-
-    /**
-     * Get an {@link Ability} from an {@link AbilityType}
-     *
-     * @param ability {@link AbilityType} to match
-     * @return matched {@link Ability}
-     */
-    public Ability getAbility(AbilityType ability) {
-        return abilitys.get(ability);
     }
 }
     

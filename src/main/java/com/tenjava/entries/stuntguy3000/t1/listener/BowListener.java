@@ -1,6 +1,7 @@
 package com.tenjava.entries.stuntguy3000.t1.listener;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +21,7 @@ public class BowListener implements Listener {
             Player p = (Player) event.getEntity();
             Arrow arrow = (Arrow) event.getProjectile();
 
+            Bukkit.broadcastMessage("Event fired");
             plugin.getAbilityHandler().parseEvent(event.getBow(), arrow);
         }
     }

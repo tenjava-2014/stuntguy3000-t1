@@ -44,7 +44,7 @@ public class FireFlightCommand implements CommandExecutor {
                     sender.sendMessage(Message.formulateConsole(Message.ERROR_INVALID_COMMAND));
                 }
             } else {
-                return moduleHandler.execute(sender, command, s, (String[]) ArrayUtils.removeElement(args, s));
+                return moduleHandler.execute(sender, command, s, (String[]) ArrayUtils.removeElement(args, module));
             }
         }
         return false;
