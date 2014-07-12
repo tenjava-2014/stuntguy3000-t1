@@ -3,9 +3,11 @@ package com.tenjava.entries.stuntguy3000.t1;
 import com.tenjava.entries.stuntguy3000.t1.command.FireFlightCommand;
 import com.tenjava.entries.stuntguy3000.t1.handler.*;
 import com.tenjava.entries.stuntguy3000.t1.listener.BowListener;
+import com.tenjava.entries.stuntguy3000.t1.listener.FireListener;
 import com.tenjava.entries.stuntguy3000.t1.listener.InventoryListener;
 import com.tenjava.entries.stuntguy3000.t1.listener.ReloadListener;
 import com.tenjava.entries.stuntguy3000.t1.runnable.ArrowHandlerTask;
+import com.tenjava.entries.stuntguy3000.t1.runnable.FireCleanupHandlerTask;
 import com.tenjava.entries.stuntguy3000.t1.runnable.ReloadHandlerTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,6 +18,7 @@ public class FireFlight extends JavaPlugin {
     private ArrowHandler arrowHandler;
     private CommandHandler commandHandler;
     private ExplosionTracer explosionTracker;
+    private FireCleanupHandler fireCleanupHandler;
     private ReloadHandler reloadHandler;
 
     public void onEnable() {
@@ -30,6 +33,7 @@ public class FireFlight extends JavaPlugin {
 
         new ArrowHandlerTask(this).runTaskTimer(this, 1l, 1l);
         new ReloadHandlerTask(this).runTaskTimer(this, 20l, 20l);
+        new FireCleanupHandlerTask(this).runTaskTimer(this, 20l, 20l);
     }
 
     /**
@@ -69,6 +73,15 @@ public class FireFlight extends JavaPlugin {
     }
 
     /**
+     * Get the instance of {@link FireCleanupHandler}
+     *
+     * @return
+     */
+    public FireCleanupHandler getFireCleanupHandler() {
+        return fireCleanupHandler;
+    }
+
+    /**
      * Get the instance of {@link FireFlight}
      *
      * @return instance
@@ -95,6 +108,7 @@ public class FireFlight extends JavaPlugin {
         abilityHandler = new AbilityHandler(this);
         explosionTracker = new ExplosionTracer(this);
         reloadHandler = new ReloadHandler(this);
+        fireCleanupHandler = new FireCleanupHandler(this);
 
         commandHandler.registerModules();
         abilityHandler.load();
@@ -108,5 +122,6 @@ public class FireFlight extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new BowListener(this), this);
         this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ReloadListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new FireListener(this), this);
     }
 }

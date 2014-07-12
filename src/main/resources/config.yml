@@ -1,24 +1,25 @@
 abilities:
+    bomber:
+        reload: true
+        reloadTime: 15
+    confuser:
+        reload: true
+        reloadTime: 15
+    effector:
+        reload: true
+        reloadTime: 15
+    hook:
+        reload: true
+        reloadTime: 15
+    missile:
+        reload: true
+        reloadTime: 15
+    scatter:
+        reload: true
+        reloadTime: 15
+        arrowsSet: 2
     trail:
+        reload: true
+        reloadTime: 15
         removeFire: true
         removeFireAfter: 15
-    burner:
-        removeFire: true
-        removeFireAfter: 25
-        blockResistance:
-            1:
-                maxBurned: 4
-            3:
-                maxBurned: 5
-    hook:
-        veolcityMultiplier: 2.0
-    scatter:
-        arrows: 5
-        scatterRange: 2
-        reload: true
-        reloadTime: 10
-    missile:
-        power: 4
-        damageBlocks: true
-        blockDrops: false
-

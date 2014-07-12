@@ -53,9 +53,10 @@ Usage
 -----
 
 Using FireFlight is super easy, and works out of the box. To select a Bow, You need to run the **/ff select** command, in which a Popup GUI appears.
+
 ![Popup GUI](http://i.imgur.com/sLLMLUc.png "Popup GUI")
 
-This GUI will allow you to click and choose a Bow **Provided you have Permission to use it.**.
+This GUI will allow you to click and choose a Bow **provided you have permission** to use it.
 
 Then simply fire the bow and see what happens!
 

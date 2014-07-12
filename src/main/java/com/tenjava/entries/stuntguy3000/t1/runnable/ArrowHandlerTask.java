@@ -3,10 +3,7 @@ package com.tenjava.entries.stuntguy3000.t1.runnable;
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.util.Util;
-import org.bukkit.Effect;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -48,10 +45,15 @@ public class ArrowHandlerTask extends BukkitRunnable {
             }
 
             if (ability == Ability.TRAIL) {
-                Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0).getBlock().setType(Material.FIRE);
-                Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 0)).add(0, 1, 0).getBlock().setType(Material.FIRE);
-                Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
-                Util.getBlockUnderneathLocation(arrow.getLocation().add(0, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
+                Location one = Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0);
+                Location two = Util.getBlockUnderneathLocation(arrow.getLocation()).add(1, 1, 0);
+                Location three = Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 1);
+                Location four = Util.getBlockUnderneathLocation(arrow.getLocation()).add(1, 1, 1);
+
+                one.getBlock().setType(Material.FIRE);
+                two.getBlock().setType(Material.FIRE);
+                three.getBlock().setType(Material.FIRE);
+                four.getBlock().setType(Material.FIRE);
 
                 world.playEffect(arrow.getLocation(), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(3, 0, 3), Effect.MOBSPAWNER_FLAMES, 10);

@@ -47,7 +47,7 @@ public class AbilityHandler {
      * Parse an Event, deciding if any FireFlight action should occur
      *
      * @param arrow     the shot Arrow
-     * @param eventType
+     * @param eventType the type of event to be parsed
      */
     public void parseEvent(Arrow arrow, final EventType eventType, Object... extras) {
         if (eventType == EventType.ENTITY_SHOOT_BOW) {

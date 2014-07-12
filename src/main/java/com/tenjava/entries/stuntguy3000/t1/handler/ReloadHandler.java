@@ -2,6 +2,7 @@ package com.tenjava.entries.stuntguy3000.t1.handler;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
+import com.tenjava.entries.stuntguy3000.t1.util.Config;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -37,6 +38,17 @@ public class ReloadHandler {
     public boolean canUse(UUID user, Ability ability) {
         if (!reloadTimes.containsKey(ability)) {
             return true;
+        }
+
+        // This is a poor way to do it, but it works
+        switch (ability) {
+            case BOMBER: { if (!Config.BOMBER_RELOAD) return true; break; }
+            case CONFUSER: { if (!Config.CONFUSER_RELOAD) return true; break; }
+            case EFFECTOR: { if (!Config.EFFECTOR_RELOAD) return true; break; }
+            case HOOK: { if (!Config.HOOK_RELOAD) return true; break; }
+            case MISSILE: { if (!Config.MISSILE_RELOAD) return true; break; }
+            case SCATTER: { if (!Config.SCATTER_RELOAD) return true; break; }
+            case TRAIL: { if (!Config.TRAIL_RELOAD) return true; break; }
         }
 
         if (!reloadTimer.containsKey(user)) {
@@ -79,7 +91,15 @@ public class ReloadHandler {
      */
     public void load() {
         for (Ability ability : Ability.values()) {
-            reloadTimes.put(ability, 20);
+            switch (ability) {
+                case BOMBER: { reloadTimes.put(ability, Config.BOMBER_RELOAD_TIME); break; }
+                case CONFUSER: { reloadTimes.put(ability, Config.CONFUSER_RELOAD_TIME); break; }
+                case EFFECTOR: { reloadTimes.put(ability, Config.EFFECTOR_RELOAD_TIME); break; }
+                case HOOK: { reloadTimes.put(ability, Config.HOOK_RELOAD_TIME); break; }
+                case MISSILE: { reloadTimes.put(ability, Config.MISSILE_RELOAD_TIME); break; }
+                case SCATTER: { reloadTimes.put(ability, Config.SCATTER_RELOAD_TIME); break; }
+                case TRAIL: { reloadTimes.put(ability, Config.TRAIL_RELOAD_TIME); break; }
+            }
         }
     }
 
