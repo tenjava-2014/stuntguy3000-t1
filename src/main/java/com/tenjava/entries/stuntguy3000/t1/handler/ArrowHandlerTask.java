@@ -45,9 +45,6 @@ public class ArrowHandlerTask extends BukkitRunnable {
                 continue;
             }
 
-            /**
-             * Really ugly method inbound
-             */
             if (ability == Ability.TRAIL) {
                 Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0).getBlock().setType(Material.FIRE);
                 Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 0)).add(0, 1, 0).getBlock().setType(Material.FIRE);

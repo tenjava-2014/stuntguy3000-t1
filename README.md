@@ -27,7 +27,7 @@ Description
 
 FireFlight is a plugin which is designed to enhance and unleash the true power of bows, which such fea tures as
  * Trail
-    - Leave a Trail of FIRE behind your arrow
+    - Leave a Trail of **Fire** behind your arrow
  * Burner
     - Destroy and go through blocks
  * Hook

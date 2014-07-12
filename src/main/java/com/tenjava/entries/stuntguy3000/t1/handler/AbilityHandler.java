@@ -7,6 +7,7 @@ import com.tenjava.entries.stuntguy3000.t1.object.EventType;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -70,7 +71,11 @@ public class AbilityHandler {
         } else if (eventType == EventType.PROJECTILE_HIT) {
             Ability ability = plugin.getArrowHandler().getAbilityType(arrow);
             if (ability != null) {
-
+                if (ability == Ability.MISSILE) {
+                    Location loc = arrow.getLocation();
+                    arrow.remove();
+                    loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 4f, false, true);
+                }
             }
         } else if (eventType == EventType.ENTITY_DAMAGE_ARROW) {
             Ability ability = plugin.getArrowHandler().getAbilityType(arrow);
@@ -88,6 +93,12 @@ public class AbilityHandler {
                         shooter.removePotionEffect(potionEffect.getType());
                         target.addPotionEffect(potionEffect);
                     }
+                }
+            } else if (ability != null && ability == Ability.HOOK) {
+                if (extras != null && extras[0] instanceof Entity) {
+                    Entity target = (Entity) extras[0];
+
+                    target.setVelocity(arrow.getVelocity().multiply(2));
                 }
             }
         }
