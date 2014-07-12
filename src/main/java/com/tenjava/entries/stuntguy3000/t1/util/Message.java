@@ -10,8 +10,10 @@ public class Message {
     public static final String COMMAND_INFO_NAME = "&7Name: &e%s";
     public static final String ERROR_COMMAND_UNSUPPORTED_CONSOLE = "&cOnly Players can run this command!";
     public static final String ERROR_INVALID_COMMAND = "&cThat command cannot be found!";
+    public static final String ERROR_INVALID_PLAYER = "&cThat player cannot be found!";
     public static final String ERROR_INVALID_SYNTAX = "&cCorrect Syntax: /%s %s %s";
     public static final String ERROR_COOLDOWN = "&cThis Bow is still reloading! (%s second(s))...";
+    public static final String ERROR_NO_PERMISSION = "&cYou do not have permission to do this action!";
     public static final String GENERAL_PREFIX = "&8[&6FireFlight&8] ";
     public static final String INVENTORY_TITLE = "&1Choose a Bow";
 

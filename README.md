@@ -5,6 +5,7 @@ stuntguy3000's ten.java submission
 
 This is a submission for the 2014 ten.java contest.
 
+- __Name:__ FireFlight
 - __Theme:__ How can combat/weapons be improved?
 - __Time:__ Time 1 (7/12/2014 00:00 to 7/12/2014 10:00 UTC)
 - __MC Version:__ 1.7.9 (latest Bukkit beta)
@@ -40,7 +41,7 @@ FireFlight is a plugin which is designed to enhance and unleash the true power o
     - Fires a Missie at an enemy, blowing it up.
  
  
-This plugin is designed for use in a PVP server, as it uses display names to recognize the bows ability.
+This plugin is designed for use in a PVP server, as it uses display names and lores to recognize the bows ability.
 
 Configuration Explanation:
 ----
@@ -49,5 +50,27 @@ Coming soon to a GitHub repository near you!
 Usage
 -----
 
-1. Install plugin
-2. Do things with it
+Using FireFlight is super easy, and works out of the box. To select a Bow, You need to run the **/ff select** command, in which a Popup GUI appears.
+![Popup GUI](http://i.imgur.com/sLLMLUc.png "Popup GUI")
+
+This GUI will allow you to click and choose a Bow **Provided you have Permission to use it.**.
+
+Then simply fire the bow and see what happens!
+
+Permissions
+----
+
+Permission | Description
+------------- | -------------
+fireflight.bow.[name]  | Allows permission of Bow [name]. *Notice:* [name] is a Wildcard variable for any Bow, so for example Hook would be **fireflight.bow.hook**
+fireflight.command.give  | Permission for /ff give
+fireflight.command.info  | Permission for /ff info
+fireflight.command.select  | Permission for /ff select
+
+Commands
+----
+Command  | Description
+------------- | -------------
+/ff give <Ability> [player] | Give a player a Bow
+/ff info <Ability> | View the Information about an Ability
+/ff select | Open an inventory GUI for Bow selection

@@ -5,6 +5,7 @@ import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.object.AbilityHolder;
 import com.tenjava.entries.stuntguy3000.t1.util.Message;
+import com.tenjava.entries.stuntguy3000.t1.util.Perm;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -19,6 +20,11 @@ public class InfoCommand implements SubCommandModule {
     public boolean execute(final CommandSender commandSender, final Command command, final String s, final String[] args) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;
+            if (!p.hasPermission(Perm.COMMAND_INFO)) {
+                commandSender.sendMessage(Message.formulate(Message.ERROR_NO_PERMISSION));
+                return true;
+            }
+
             if (args.length == 1) {
                 String abilityName = args[0];
 

@@ -4,6 +4,8 @@ import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.util.Message;
+import com.tenjava.entries.stuntguy3000.t1.util.Perm;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +19,12 @@ public class GiveBowCommand implements SubCommandModule {
     public boolean execute(final CommandSender commandSender, final Command command, final String s, final String[] args) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;
-            if (args.length == 1) {
+            if (!p.hasPermission(Perm.COMMAND_GIVE)) {
+                commandSender.sendMessage(Message.formulate(Message.ERROR_NO_PERMISSION));
+                return true;
+            }
+
+            if (args.length < 1) {
                 String abilityName = args[0];
 
                 Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
@@ -25,13 +32,41 @@ public class GiveBowCommand implements SubCommandModule {
                     commandSender.sendMessage(Message.formulate(Message.COMMAND_INFO_INVALID));
                 } else {
                     ItemStack item = ability.buildBow();
-                    p.getInventory().addItem(item);
+
+                    if (args.length == 1) {
+                        p.getInventory().addItem(item);
+                    } else {
+                        Player target = Bukkit.getPlayer(args[1]);
+                        if (target == null) {
+                            commandSender.sendMessage(Message.formulate(Message.ERROR_INVALID_PLAYER));
+                        } else {
+                            target.getInventory().addItem(item);
+                        }
+                    }
                 }
             } else {
                 p.sendMessage(Message.formulate(Message.ERROR_INVALID_SYNTAX, s, getName(), getUsage()));
             }
         } else {
-            commandSender.sendMessage(Message.formulateConsole(Message.ERROR_COMMAND_UNSUPPORTED_CONSOLE));
+            if (args.length < 2) {
+                String abilityName = args[0];
+
+                Ability ability = FireFlight.getInstance().getAbilityHandler().getAbilityType(abilityName);
+                if (ability == null) {
+                    commandSender.sendMessage(Message.formulateConsole(Message.COMMAND_INFO_INVALID));
+                } else {
+                    ItemStack item = ability.buildBow();
+
+                    Player target = Bukkit.getPlayer(args[1]);
+                    if (target == null) {
+                        commandSender.sendMessage(Message.formulateConsole(Message.ERROR_INVALID_PLAYER));
+                    } else {
+                        target.getInventory().addItem(item);
+                    }
+                }
+            } else {
+                commandSender.sendMessage(Message.formulateConsole(Message.ERROR_INVALID_SYNTAX, s, getName(), getUsage()));
+            }
         }
         return true;
     }
@@ -53,6 +88,6 @@ public class GiveBowCommand implements SubCommandModule {
 
     @Override
     public String getUsage() {
-        return "<name>";
+        return "<name> [player]";
     }
 }

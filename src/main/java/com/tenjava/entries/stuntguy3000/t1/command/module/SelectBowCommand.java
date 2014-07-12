@@ -22,6 +22,12 @@ public class SelectBowCommand implements SubCommandModule {
     public boolean execute(final CommandSender commandSender, final Command command, final String s, final String[] args) {
         if (commandSender instanceof Player) {
             Player p = (Player) commandSender;
+
+            if (!p.hasPermission(Perm.COMMAND_SELECT)) {
+                commandSender.sendMessage(Message.formulate(Message.ERROR_NO_PERMISSION));
+                return true;
+            }
+
             Inventory inventory = Bukkit.createInventory(p, 9, Message.formulateRaw(Message.INVENTORY_TITLE));
 
             int slot = 0;
