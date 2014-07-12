@@ -26,16 +26,25 @@ Description
 ----
 
 FireFlight is a plugin which is designed to enhance and unleash the true power of bows, which such features as
- * FireTrail
+ * Trail
     - Leave a Trail of FIRE behind your arrow
- * BlockBurner
+ * Burner
     - Destroy and go through blocks
- * MobHook
-    - Hook and catch Mobs onto your Arrow, and send them on a fast trip
- * PlayerHook
-    - Similar to MobHook, but it catches and throws players
+ * Hook
+    - Hook and catch Mobs and Players onto your Arrow, and send in the direction of your arrow
+ * Scatter
+    - Fires a configurable amount of arrows, while scattering them in multiple directions
+ * Effector
+    - When a arrow hits an entity, you transfer all of your active potion effects to it\
+ * Missile
+    - Fires a Missie at an enemy, blowing it up.
+ 
  
 This plugin is designed for use in a PVP server, as it uses display names to recognize the bows ability.
+
+Configuration Explanation:
+----
+Coming soon to a GitHub repository near you!
 
 Usage
 -----

@@ -1,0 +1,22 @@
+abilities:
+    trail:
+        removeFire: true
+        removeFireAfter: 15
+    burner:
+        leaveFire: true
+        removeFire: true
+        removeFireAfter: 25
+        blockResistance:
+            1:
+                maxBurned: 4
+            3:
+                maxBurned: 5
+    hook:
+        damageEntity: true
+    scatter:
+        arrows: 5
+        scatterRange: 2
+        reload: true
+        reloadTime: 10
+    effector:
+
