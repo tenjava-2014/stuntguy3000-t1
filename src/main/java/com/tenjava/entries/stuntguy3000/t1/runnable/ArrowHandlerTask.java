@@ -51,6 +51,7 @@ public class ArrowHandlerTask extends BukkitRunnable {
                 Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 0)).add(0, 1, 0).getBlock().setType(Material.FIRE);
                 Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
                 Util.getBlockUnderneathLocation(arrow.getLocation().add(0, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
+
                 world.playEffect(arrow.getLocation(), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(3, 0, 3), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(3, 0, 0), Effect.MOBSPAWNER_FLAMES, 10);
