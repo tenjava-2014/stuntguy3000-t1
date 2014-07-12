@@ -16,43 +16,15 @@ public class ReloadHandler {
         this.plugin = instance;
     }
 
-    /**
-     * Returns how many seconds left until the item has reloaded
-     *
-     * @param uuid
-     * @param ability
-     * @return
-     */
-    public int getTimeLeft(final UUID uuid, final Ability ability) {
-        return reloadTimer.get(uuid).get(ability);
-    }
+    private void addTimer(final UUID user, final Ability ability, final Integer time) {
+        HashMap<Ability, Integer> times = reloadTimer.get(user);
 
-    /**
-     * Loads all Abilitys into the reloadTimes Map
-     */
-    public void load() {
-        for (Ability ability : Ability.values()) {
-            reloadTimes.put(ability, 20);
+        if (times == null) {
+            times = new HashMap<>();
         }
-    }
 
-    /**
-     * Return a Hashmap of all the active reload times
-     *
-     * @return
-     */
-    public HashMap<UUID, HashMap<Ability, Integer>> getAllTimes() {
-        return reloadTimer;
-    }
-
-    /**
-     * Update the timers map for a User
-     *
-     * @param user
-     * @param timesNew
-     */
-    public void setTimers(final UUID user, final HashMap<Ability, Integer> timesNew) {
-        reloadTimer.put(user, timesNew);
+        times.put(ability, time);
+        reloadTimer.put(user, times);
     }
 
     /**
@@ -82,14 +54,42 @@ public class ReloadHandler {
         }
     }
 
-    private void addTimer(final UUID user, final Ability ability, final Integer time) {
-        HashMap<Ability, Integer> times = reloadTimer.get(user);
+    /**
+     * Return a Hashmap of all the active reload times
+     *
+     * @return
+     */
+    public HashMap<UUID, HashMap<Ability, Integer>> getAllTimes() {
+        return reloadTimer;
+    }
 
-        if (times == null) {
-            times = new HashMap<>();
+    /**
+     * Returns how many seconds left until the item has reloaded
+     *
+     * @param uuid
+     * @param ability
+     * @return
+     */
+    public int getTimeLeft(final UUID uuid, final Ability ability) {
+        return reloadTimer.get(uuid).get(ability);
+    }
+
+    /**
+     * Loads all Abilitys into the reloadTimes Map
+     */
+    public void load() {
+        for (Ability ability : Ability.values()) {
+            reloadTimes.put(ability, 20);
         }
+    }
 
-        times.put(ability, time);
-        reloadTimer.put(user, times);
+    /**
+     * Update the timers map for a User
+     *
+     * @param user
+     * @param timesNew
+     */
+    public void setTimers(final UUID user, final HashMap<Ability, Integer> timesNew) {
+        reloadTimer.put(user, timesNew);
     }
 }

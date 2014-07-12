@@ -5,6 +5,7 @@ import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.util.Util;
 import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -56,6 +57,22 @@ public class ArrowHandlerTask extends BukkitRunnable {
                 world.playEffect(arrow.getLocation().add(3, 0, 3), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(3, 0, 0), Effect.MOBSPAWNER_FLAMES, 10);
                 world.playEffect(arrow.getLocation().add(0, 0, 3), Effect.MOBSPAWNER_FLAMES, 10);
+            } else if (ability == Ability.BOMBER) {
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 5);
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 15);
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 5);
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 10);
+                world.playEffect(arrow.getLocation(), Effect.SMOKE, 15);
+            } else if (ability == Ability.CONFUSER) {
+                world.playSound(arrow.getLocation(), Sound.NOTE_PLING, 2F, 1.5F);
+                world.playSound(arrow.getLocation(), Sound.NOTE_PLING, 2F, 1F);
+                world.playSound(arrow.getLocation(), Sound.NOTE_PLING, 2F, 0.5F);
+            }
+
+            if (arrow.isDead() || arrow.isOnGround()) {
+                arrow.remove();
+                plugin.getArrowHandler().untrackUUID(uuid);
             }
         }
     }

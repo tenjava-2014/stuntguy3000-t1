@@ -6,10 +6,9 @@ import org.bukkit.Material;
 import java.util.HashMap;
 
 public class Config {
-    public static HashMap<Material, Integer> BURNER_BLOCK_RESTIANCE = new HashMap<>();
     public static boolean BOMBER_RELOAD = true;
     public static boolean BOMBER_REMOVE_FIRE = true;
-
+    public static HashMap<Material, Integer> BURNER_BLOCK_RESTIANCE = new HashMap<>();
     public static boolean HOOK_RELOAD = true;
     public static int HOOK_TIME = 15;
     public static double HOOK_VELOCITY_MULTIPLIER = 2.0;

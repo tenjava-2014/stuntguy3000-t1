@@ -112,7 +112,7 @@ public class AbilityHandler {
             Location location = arrow.getLocation();
             Vector arrowVector = arrow.getVelocity();
 
-            for (double i = 0.15; i <= 0.35;) {
+            for (double i = 0.15; i <= 0.35; ) {
                 location.getWorld().spawnArrow(location, arrowVector.add(arrowVector.multiply(i)), (Float) extras[1], 13);
                 i = i + 0.15;
             }

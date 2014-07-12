@@ -41,8 +41,7 @@ public enum Ability {
     MISSILE(new AbilityHolder(null, "Missile", "Makes arrows explosive")),
 
     /**
-     * As the Arrow soars across the land, it produces random Jukebox notes
-     * Which has got to be confusing
+     * As the Arrow soars across the land, it produces random Jukebox notes Which has got to be confusing
      */
     CONFUSER(new AbilityHolder(null, "Confuser", "Confuse your enemy with the sound of your battlecry"));
 
