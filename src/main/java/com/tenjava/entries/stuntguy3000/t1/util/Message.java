@@ -3,6 +3,7 @@ package com.tenjava.entries.stuntguy3000.t1.util;
 import org.bukkit.ChatColor;
 
 public class Message {
+    public static final String ERROR_INVALID_COMMAND = "&cThat command cannot be found!";
     public static final String GENERAL_PREFIX = "&8[&6FireFlight&8] ";
     public static final String GENERAL_PREFIX_CONSOLE = "[FireFlight] ";
 
@@ -13,7 +14,7 @@ public class Message {
      * @param variables variables Array of values to be formatted
      * @return formulated result
      */
-    public static String formulate(String message, Object variables) {
+    public static String formulate(String message, Object... variables) {
         return ChatColor.translateAlternateColorCodes('&', GENERAL_PREFIX + String.format(message, variables));
     }
 
@@ -26,7 +27,7 @@ public class Message {
      * @param variables variables Array of values to be formatted
      * @return formulated result
      */
-    public static String formulateConsole(String message, Object variables) {
+    public static String formulateConsole(String message, Object... variables) {
         return ChatColor.stripColor(GENERAL_PREFIX_CONSOLE + formulate(message, variables));
     }
 }
