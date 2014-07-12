@@ -46,7 +46,15 @@ public class FireCleanupHandler {
      * @return
      */
     public boolean isTracked(final Location location) {
-        return trackedFire.containsKey(cleanLocation(location.clone()));
+        for (Location l : trackedFire.keySet()) {
+            if (l.getX() == location.getX() &&
+                    l.getY() == location.getY() &&
+                    l.getZ() == location.getZ() &&
+                    l.getWorld().getName().equals(location.getWorld().getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Location cleanLocation(Location original) {

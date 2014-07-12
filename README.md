@@ -71,8 +71,40 @@ fireflight.command.select  | Permission for /ff select
 
 Commands
 ----
+
 Command  | Description
 ------------- | -------------
 /ff give <Ability> [player] | Give a player a Bow
 /ff info <Ability> | View the Information about an Ability
 /ff select | Open an inventory GUI for Bow selection
+
+Configuration
+----
+
+```
+abilities:
+    bomber:
+        reload: true        # Do you want there to be a cooldown on this item? true = yes, false = no
+        reloadTime: 15      # Reload after x seconds
+    confuser:
+        reload: true        
+        reloadTime: 15
+    effector:
+        reload: true        
+        reloadTime: 15
+    hook:
+        reload: true        
+        reloadTime: 15
+    missile:
+        reload: true        
+        reloadTime: 15
+    scatter:
+        reload: true        
+        reloadTime: 15
+        arrowsSet: 2        # How many sets of arrows are fired
+    trail:
+        reload: true        
+        reloadTime: 15      
+        removeFire: true    # Do you want fire to be removed? true = yes, false = no
+        removeFireAfter: 15 # Remove fire after x seconds
+```
