@@ -5,6 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
+
 public enum Ability {
     /**
      * Leaves a trail of fire behind and underneath a shot arrow
@@ -48,6 +50,7 @@ public enum Ability {
         ItemMeta im = is.getItemMeta();
 
         im.setDisplayName(ChatColor.GOLD + this.getAbilityHolder().getName());
+        im.setLore(Arrays.asList(ChatColor.YELLOW + this.getAbilityHolder().getDescription()));
         is.setItemMeta(im);
 
         return is;

@@ -4,6 +4,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 
 public class Util {
+    /**
+     * Get the next block underneath a location.
+     *
+     * @param loc
+     * @return block underneath the specified location
+     */
     public static Location getBlockUnderneathLocation(Location loc) {
         Location locBelow = loc.subtract(0, 1, 0);
 

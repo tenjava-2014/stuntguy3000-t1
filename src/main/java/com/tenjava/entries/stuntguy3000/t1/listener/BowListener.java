@@ -23,7 +23,7 @@ public class BowListener implements Listener {
             Player p = (Player) event.getEntity();
             Arrow arrow = (Arrow) event.getProjectile();
 
-            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_SHOOT_BOW, event.getBow());
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_SHOOT_BOW, event.getBow(), event.getForce());
         }
     }
 
@@ -40,7 +40,7 @@ public class BowListener implements Listener {
     public void onHit(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Arrow && ((Arrow) event.getDamager()).getShooter() instanceof Player) {
             Player p = (Player) event.getEntity();
-            Arrow arrow = (Arrow) event.getEntity();
+            Arrow arrow = (Arrow) event.getDamager();
 
             plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_DAMAGE_ARROW, p);
         }

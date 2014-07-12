@@ -4,6 +4,7 @@ import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
 import com.tenjava.entries.stuntguy3000.t1.command.module.GiveBowCommand;
 import com.tenjava.entries.stuntguy3000.t1.command.module.InfoCommand;
+import com.tenjava.entries.stuntguy3000.t1.command.module.SelectBowCommand;
 
 import java.util.*;
 
@@ -35,6 +36,7 @@ public class CommandHandler {
     public void registerModules() {
         registerModule(new InfoCommand());
         registerModule(new GiveBowCommand());
+        registerModule(new SelectBowCommand());
     }
 
     /**

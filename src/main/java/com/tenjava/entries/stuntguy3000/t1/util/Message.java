@@ -12,6 +12,7 @@ public class Message {
     public static final String ERROR_INVALID_COMMAND = "&cThat command cannot be found!";
     public static final String ERROR_INVALID_SYNTAX = "&cCorrect Syntax: /%s %s %s";
     public static final String GENERAL_PREFIX = "&8[&6FireFlight&8] ";
+    public static final String INVENTORY_TITLE = "&1Choose a Bow";
 
     /**
      * Formulate a String, and its variables into a Message to be sent to a Player
@@ -22,6 +23,19 @@ public class Message {
      */
     public static String formulate(String message, Object... variables) {
         return ChatColor.translateAlternateColorCodes('&', GENERAL_PREFIX + String.format(message, variables));
+    }
+
+    /**
+     * Formulate a String, and its variables into a Message to be sent to a Player
+     * </p>
+     * This method does not add the GENERAL_PREFIX message.
+     *
+     * @param message message String to be formatted
+     * @param variables variables Array of values to be formatted
+     * @return formulated result
+     */
+    public static String formulateRaw(String message, Object... variables) {
+        return ChatColor.translateAlternateColorCodes('&', String.format(message, variables));
     }
 
     /**

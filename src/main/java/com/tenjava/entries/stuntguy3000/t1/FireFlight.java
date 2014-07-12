@@ -6,6 +6,7 @@ import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandler;
 import com.tenjava.entries.stuntguy3000.t1.handler.ArrowHandlerTask;
 import com.tenjava.entries.stuntguy3000.t1.handler.CommandHandler;
 import com.tenjava.entries.stuntguy3000.t1.listener.BowListener;
+import com.tenjava.entries.stuntguy3000.t1.listener.InventoryListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FireFlight extends JavaPlugin {
@@ -34,6 +35,7 @@ public class FireFlight extends JavaPlugin {
      */
     private void registerListeners() {
         this.getServer().getPluginManager().registerEvents(new BowListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
     }
 
     public AbilityHandler getAbilityHandler() {
