@@ -23,12 +23,12 @@ public class FireFlightCommand implements CommandExecutor {
             if (player) {
                 sender.sendMessage(Message.formulate(Message.COMMAND_HELP_TLTE));
                 for (SubCommandModule module : plugin.getCommandHandler().getModules()) {
-                    sender.sendMessage(Message.formulate(Message.COMMAND_HELP, s, module.getName(), module.getUsage(), module.getDescription()));
+                    sender.sendMessage(Message.formulate(Message.COMMAND_HELP, s, module.getName(), (module.getUsage() == null ? "" : module.getUsage()), module.getDescription()));
                 }
             } else {
                 sender.sendMessage(Message.formulateConsole(Message.COMMAND_HELP_TLTE));
                 for (SubCommandModule module : plugin.getCommandHandler().getModules()) {
-                    sender.sendMessage(Message.formulateConsole(Message.COMMAND_HELP, s, module.getName(), module.getUsage(), module.getDescription()));
+                    sender.sendMessage(Message.formulateConsole(Message.COMMAND_HELP, s, module.getName(), (module.getUsage() == null ? "" : module.getUsage()), module.getDescription()));
                 }
             }
         } else {
