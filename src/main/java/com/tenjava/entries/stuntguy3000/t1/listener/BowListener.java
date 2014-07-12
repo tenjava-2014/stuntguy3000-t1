@@ -1,12 +1,14 @@
 package com.tenjava.entries.stuntguy3000.t1.listener;
 
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
-import org.bukkit.Bukkit;
+import com.tenjava.entries.stuntguy3000.t1.object.EventType;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class BowListener implements Listener {
     private FireFlight plugin;
@@ -21,8 +23,26 @@ public class BowListener implements Listener {
             Player p = (Player) event.getEntity();
             Arrow arrow = (Arrow) event.getProjectile();
 
-            Bukkit.broadcastMessage("Event fired");
-            plugin.getAbilityHandler().parseEvent(event.getBow(), arrow);
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_SHOOT_BOW, event.getBow());
+        }
+    }
+
+    @EventHandler
+    public void onHit(ProjectileHitEvent event) {
+        if (event.getEntity() instanceof Arrow) {
+            Arrow arrow = (Arrow) event.getEntity();
+
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.PROJECTILE_HIT);
+        }
+    }
+
+    @EventHandler
+    public void onHit(EntityDamageByEntityEvent event) {
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Arrow && ((Arrow) event.getDamager()).getShooter() instanceof Player) {
+            Player p = (Player) event.getEntity();
+            Arrow arrow = (Arrow) event.getEntity();
+
+            plugin.getAbilityHandler().parseEvent(arrow, EventType.ENTITY_DAMAGE_ARROW, p);
         }
     }
 }
