@@ -1,6 +1,6 @@
 package com.tenjava.entries.stuntguy3000.t1.listener;
 
-import com.tenjava.entries.stuntguy3000.t1.TenJava;
+import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,9 +8,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 
 public class BowListener implements Listener {
-    private TenJava plugin;
+    private FireFlight plugin;
 
-    public BowListener(TenJava instance) {
+    public BowListener(FireFlight instance) {
         this.plugin = instance;
     }
 

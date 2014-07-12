@@ -1,20 +1,17 @@
 package com.tenjava.entries.stuntguy3000.t1.handler;
 
-import com.tenjava.entries.stuntguy3000.t1.TenJava;
+import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.command.SubCommandModule;
 import com.tenjava.entries.stuntguy3000.t1.command.module.InfoCommand;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommandHandler {
-    private TenJava plugin;
+    private FireFlight plugin;
 
     private HashMap<List<String>, SubCommandModule> subCommands = new HashMap<>();
 
-    public CommandHandler(TenJava instance) {
+    public CommandHandler(FireFlight instance) {
         this.plugin = instance;
     }
 
@@ -25,6 +22,10 @@ public class CommandHandler {
             }
         }
         return null;
+    }
+
+    public Collection<SubCommandModule> getModules() {
+        return subCommands.values();
     }
 
     /**

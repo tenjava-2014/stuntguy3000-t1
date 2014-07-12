@@ -1,17 +1,17 @@
 package com.tenjava.entries.stuntguy3000.t1.command;
 
-import com.tenjava.entries.stuntguy3000.t1.TenJava;
+import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.util.Message;
-import com.tenjava.entries.stuntguy3000.t1.util.StringUtil;
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class FireFlightCommand implements CommandExecutor {
-    private TenJava plugin;
+    private FireFlight plugin;
 
-    public FireFlightCommand(TenJava instance) {
+    public FireFlightCommand(FireFlight instance) {
         this.plugin = instance;
     }
 
@@ -19,6 +19,18 @@ public class FireFlightCommand implements CommandExecutor {
     public boolean onCommand(final CommandSender sender, final Command command, final String s, final String[] args) {
         if (args.length == 0) {
             // Display help menu
+            boolean player = (sender instanceof Player);
+            if (player) {
+                sender.sendMessage(Message.formulate(Message.COMMAND_HELP_TLTE));
+                for (SubCommandModule module : plugin.getCommandHandler().getModules()) {
+                    sender.sendMessage(Message.formulate(Message.COMMAND_HELP, s, module.getName(), module.getUsage(), module.getDescription()));
+                }
+            } else {
+                sender.sendMessage(Message.formulateConsole(Message.COMMAND_HELP_TLTE));
+                for (SubCommandModule module : plugin.getCommandHandler().getModules()) {
+                    sender.sendMessage(Message.formulateConsole(Message.COMMAND_HELP, s, module.getName(), module.getUsage(), module.getDescription()));
+                }
+            }
         } else {
             // Attempt to execute sub-command
             String module = args[0];
@@ -32,7 +44,7 @@ public class FireFlightCommand implements CommandExecutor {
                     sender.sendMessage(Message.formulateConsole(Message.ERROR_INVALID_COMMAND));
                 }
             } else {
-                return moduleHandler.execute(sender, command, s, StringUtil.removeIndex(args, 0));
+                return moduleHandler.execute(sender, command, s, (String[]) ArrayUtils.removeElement(args, s));
             }
         }
         return false;

@@ -1,23 +1,22 @@
 package com.tenjava.entries.stuntguy3000.t1.handler;
 
-import com.tenjava.entries.stuntguy3000.t1.TenJava;
+import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.object.AbilityType;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 
 public class AbilityHandler {
-    private TenJava plugin;
+    private FireFlight plugin;
 
     private HashMap<AbilityType, Ability> abilitys = new HashMap<>();
     private HashMap<String, AbilityType> bowNames = new HashMap<>();
 
-    public AbilityHandler(TenJava instance) {
+    public AbilityHandler(FireFlight instance) {
         this.plugin = instance;
     }
 
@@ -25,7 +24,7 @@ public class AbilityHandler {
      * Parse an Event, deciding if any FireFlight action should occur
      *
      * @param bow item used
-     * @param shooter Player who shot the arrow
+     * @param arrow the shot Arrow
      */
     public void parseEvent(ItemStack bow, Arrow arrow) {
         if (bow == null || arrow == null ||
@@ -51,7 +50,9 @@ public class AbilityHandler {
      * @param arrow
      */
     private void runAbility(Ability ability, Arrow arrow) {
+        if (ability.getAbility() == AbilityType.BURNER) {
 
+        }
     }
 
     /**
