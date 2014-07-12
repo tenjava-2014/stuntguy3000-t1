@@ -29,11 +29,11 @@ public class ArrowHandler {
         return trackedArrows.get(arrow.getUniqueId());
     }
 
-    public void addAbility(Arrow arrow, Ability ability) {
-        trackedArrows.put(arrow.getUniqueId(), ability);
-        trackedArrowWorlds.put(arrow.getUniqueId(), arrow.getLocation().getWorld().getName());
-    }
-
+    /**
+     * Gets the stored world where an UUID (of an Entity) is
+     * @param uuid
+     * @return
+     */
     public World getWorld(final UUID uuid) {
         if (trackedArrowWorlds.containsKey(uuid)) {
             return Bukkit.getWorld(trackedArrowWorlds.get(uuid));
@@ -42,21 +42,32 @@ public class ArrowHandler {
         }
     }
 
+    /**
+     * Enables tracking of an Arrow
+     *
+     * @param arrow
+     * @param ability
+     */
     public void track(final Arrow arrow, Ability ability) {
-
+        trackedArrows.put(arrow.getUniqueId(), ability);
+        trackedArrowWorlds.put(arrow.getUniqueId(), arrow.getWorld().getName());
     }
 
-    public void untrackUUID(UUID u) {
-        trackedArrows.remove(u);
-        trackedArrowWorlds.remove(u);
+    /**
+     * Removes tracking of an arrow
+     * @param uuid
+     */
+    public void untrackUUID(UUID uuid) {
+        trackedArrows.remove(uuid);
+        trackedArrowWorlds.remove(uuid);
     }
 
+    /**
+     * Returns a HashMap of all tracked arrows
+     * @return
+     */
     public HashMap<UUID, Ability> getAllTrackedArrows() {
         return trackedArrows;
-    }
-
-    public void setAllTrackedArrows(HashMap<UUID, Ability> tracked) {
-        trackedArrows = tracked;
     }
 }
     

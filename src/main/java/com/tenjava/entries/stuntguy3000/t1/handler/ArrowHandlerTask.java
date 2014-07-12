@@ -3,7 +3,6 @@ package com.tenjava.entries.stuntguy3000.t1.handler;
 import com.tenjava.entries.stuntguy3000.t1.FireFlight;
 import com.tenjava.entries.stuntguy3000.t1.object.Ability;
 import com.tenjava.entries.stuntguy3000.t1.util.Util;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Arrow;
@@ -23,7 +22,7 @@ public class ArrowHandlerTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        HashMap<UUID, Ability> arrowMapUpdated = plugin.getArrowHandler().getAllTrackedArrows();
+        HashMap<UUID, Ability> arrowMapUpdated = (HashMap<UUID, Ability>) plugin.getArrowHandler().getAllTrackedArrows().clone();
         for (Map.Entry<UUID, Ability> arrowMap : arrowMapUpdated.entrySet()) {
             UUID uuid = arrowMap.getKey();
             Ability ability = arrowMap.getValue();
@@ -46,9 +45,14 @@ public class ArrowHandlerTask extends BukkitRunnable {
                 continue;
             }
 
+            /**
+             * Really ugly method inbound
+             */
             if (ability == Ability.TRAIL) {
-                Location block = Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0);
-                block.getBlock().setType(Material.FIRE);
+                Util.getBlockUnderneathLocation(arrow.getLocation()).add(0, 1, 0).getBlock().setType(Material.FIRE);
+                Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 0)).add(0, 1, 0).getBlock().setType(Material.FIRE);
+                Util.getBlockUnderneathLocation(arrow.getLocation().add(1, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
+                Util.getBlockUnderneathLocation(arrow.getLocation().add(0, 0, 1)).add(0, 1, 0).getBlock().setType(Material.FIRE);
             }
         }
     }

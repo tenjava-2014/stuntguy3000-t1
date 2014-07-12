@@ -26,7 +26,7 @@ public class FireFlight extends JavaPlugin {
 
         this.getCommand("FireFlight").setExecutor(new FireFlightCommand(this));
 
-        new ArrowHandlerTask(this).runTaskTimer(this, 10l, 10l);
+        new ArrowHandlerTask(this).runTaskTimer(this, 1l, 1l);
     }
 
     /**

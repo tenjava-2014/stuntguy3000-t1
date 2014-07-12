@@ -21,7 +21,7 @@ public class AbilityHandler {
 
     public void load() {
         for (Ability type : Ability.values()) {
-            bowNames.put(ChatColor.GOLD + type.getAbilityHolder().getName(), type);
+            bowNames.put(type.getAbilityHolder().getName().toLowerCase(), type);
         }
     }
 
@@ -50,9 +50,9 @@ public class AbilityHandler {
         String name = ChatColor.stripColor(itemMeta.getDisplayName());
 
         if (bowNames.containsKey(name.toLowerCase())) {
-            AbilityHolder abilityHolder = bowNames.get(name).getAbilityHolder();
+            AbilityHolder abilityHolder = bowNames.get(name.toLowerCase()).getAbilityHolder();
             if (abilityHolder != null) {
-                plugin.getArrowHandler().track(arrow);
+                plugin.getArrowHandler().track(arrow, abilityHolder.getAbility());
                 runAbility(abilityHolder, arrow);
             }
         }
